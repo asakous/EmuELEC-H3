@@ -1,3 +1,12 @@
+#H3
+This repository is only for Allwinner H3 devices. Don't use it on other devices and don't build as KODI addon because it probably won't work.
+
+Because Libreelec use host tools to make image, so if you are using linux distro that have new ext4 features such as 64bit metadata_csumi(/etc/mke2fs.conf) .don't forget to remove it otherwise image won't boot.
+
+use command below to compile the program.
+PROJECT=H3 ARCH=arm DISTRO=EmuELEC make -j4 image
+
+
 # EmuELEC  
 Retro emulation for Amlogic devices.  
 Based on  [CoreELEC](https://github.com/CoreELEC/CoreELEC) and [Lakka](https://github.com/libretro/Lakka-LibreELEC), I just combine them with [Emulationstation](https://github.com/RetroPie/EmulationStation) and some standalone emulators ([Advancemame](https://github.com/amadvance/advancemame), [PPSSPP](https://github.com/hrydgard/ppsspp), [Reicast](https://github.com/reicast/reicast-emulator), [Amiberry](https://github.com/midwan/amiberry) and others). 
