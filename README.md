@@ -1,9 +1,9 @@
-#H3
+#H3<br>
 This repository is only for Allwinner H3 devices. Don't use it on other devices and don't build as KODI addon because it probably won't work.
 
-Because Libreelec use host tools to make image, so if you are using linux distro that have new ext4 features such as 64bit metadata_csumi(/etc/mke2fs.conf) .don't forget to remove it otherwise image won't boot.
+Because Libreelec use host tools to make image, so if you are using linux distro that have new ext4 features such as 64bit metadata_csum(/etc/mke2fs.conf) .don't forget to remove it otherwise image won't boot.
 
-use command below to compile the program.
+use command below to compile the program.<br>
 PROJECT=H3 ARCH=arm DISTRO=EmuELEC make -j4 image
 
 
