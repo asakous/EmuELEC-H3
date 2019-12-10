@@ -39,6 +39,6 @@ sx05re-kodi*.log
 
 packages/sx05re/experimental/
 #for H3
-packages/linux/
-packages/linux-driver/
-scripts/
+#packages/linux/
+#packages/linux-driver/
+#scripts/
