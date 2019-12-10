@@ -1,0 +1,42 @@
+diff -Naur old/Makefile.common new/Makefile.common
+--- old/Makefile.common	2019-08-06 03:34:49.000000000 +0800
++++ new/Makefile.common	2019-12-03 09:38:25.956275863 +0800
+@@ -323,7 +323,10 @@
+ 	$(VIDEODIR_GLIDEN64)/src/GLideNHQ/TxReSample.cpp \
+ 	$(VIDEODIR_GLIDEN64)/src/GLideNHQ/TxTexCache.cpp \
+ 	$(VIDEODIR_GLIDEN64)/src/GLideNHQ/TxUtil.cpp \
+-	$(VIDEODIR_GLIDEN64)/src/RSP_LoadMatrix.cpp
++
++#ifeq ($(HAVE_NEON),0)
++#	$(VIDEODIR_GLIDEN64)/src/RSP_LoadMatrix.cpp
++#endif
+ 
+ SOURCES_C += \
+ 	$(RSPDIR)/src/alist.c \
+@@ -346,19 +349,24 @@
+ 	SOURCES_CXX += $(VIDEODIR_GLIDEN64)/src/CRC32_ARMV8.cpp
+ else ifeq ($(platform), libnx)
+ 	SOURCES_CXX += $(VIDEODIR_GLIDEN64)/src/CRC32_ARMV8.cpp
++else ifeq ($(platform), h3)
++        SOURCES_CXX += $(VIDEODIR_GLIDEN64)/src/Neon/CRC_OPT_NEON.cpp
++
+ else
+ 	SOURCES_CXX += $(ROOT_DIR)/custom/GLideN64/CRC.cpp
+ endif
+ 
+ ifeq ($(HAVE_NEON),1)
+ 	SOURCES_CXX   += $(VIDEODIR_GLIDEN64)/src/Neon/3DMathNeon.cpp \
+-						  $(VIDEODIR_GLIDEN64)/src/Neon/gSPNeon.cpp
++						  $(VIDEODIR_GLIDEN64)/src/Neon/gSPNeon.cpp \
++						  $(VIDEODIR_GLIDEN64)/src/Neon/RSP_LoadMatrixNeon.cpp
+ 
+ 	SOURCES_ASM += $(LIBRETRO_COMM_DIR)/audio/conversion/float_to_s16_neon.S \
+ 						$(LIBRETRO_COMM_DIR)/audio/conversion/s16_to_float_neon.S \
+ 						$(LIBRETRO_COMM_DIR)/audio/resampler/drivers/sinc_resampler_neon.S
+ else
+-	SOURCES_CXX   += $(VIDEODIR_GLIDEN64)/src/3DMath.cpp
++	SOURCES_CXX   += $(VIDEODIR_GLIDEN64)/src/3DMath.cpp \
++	SOURCES_CXX   += $(VIDEODIR_GLIDEN64)/src/RSP_LoadMatrix.cpp
+ endif
+ 
+ EGL_LIB ?= -lEGL

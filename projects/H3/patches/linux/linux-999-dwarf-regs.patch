@@ -1,0 +1,12 @@
+diff -Naur old/tools/perf/arch/arm/util/dwarf-regs.c new/tools/perf/arch/arm/util/dwarf-regs.c
+--- old/tools/perf/arch/arm/util/dwarf-regs.c	2019-11-22 17:48:44.053499242 +0800
++++ new/tools/perf/arch/arm/util/dwarf-regs.c	2019-11-22 17:45:15.898611595 +0800
+@@ -10,7 +10,7 @@
+ 
+ #include <stdlib.h>
+ #ifndef __UCLIBC__
+-#include <libio.h>
++#include <stdio.h>
+ #endif
+ #include <dwarf-regs.h>
+ 

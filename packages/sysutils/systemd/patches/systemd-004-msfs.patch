@@ -1,0 +1,72 @@
+diff -Naur old/src/basic/missing.h new/src/basic/missing.h
+--- old/src/basic/missing.h	2019-11-25 14:40:42.385268315 +0800
++++ new/src/basic/missing.h	2019-11-25 14:50:30.988878533 +0800
+@@ -477,46 +477,6 @@
+ #define SMACK_MAGIC 0x43415d53
+ #endif
+ 
+-#ifndef MS_MOVE
+-#define MS_MOVE 8192
+-#endif
+-
+-#ifndef MS_REC
+-#define MS_REC 16384
+-#endif
+-
+-#ifndef MS_PRIVATE
+-#define MS_PRIVATE      (1<<18)
+-#endif
+-
+-#ifndef MS_REC
+-#define MS_REC          (1<<19)
+-#endif
+-
+-#ifndef MS_SHARED
+-#define MS_SHARED       (1<<20)
+-#endif
+-
+-#ifndef MS_RELATIME
+-#define MS_RELATIME     (1<<21)
+-#endif
+-
+-#ifndef MS_KERNMOUNT
+-#define MS_KERNMOUNT    (1<<22)
+-#endif
+-
+-#ifndef MS_I_VERSION
+-#define MS_I_VERSION    (1<<23)
+-#endif
+-
+-#ifndef MS_STRICTATIME
+-#define MS_STRICTATIME  (1<<24)
+-#endif
+-
+-#ifndef MS_LAZYTIME
+-#define MS_LAZYTIME     (1<<25)
+-#endif
+-
+ #ifndef SCM_SECURITY
+ #define SCM_SECURITY 0x03
+ #endif
+diff -Naur old/src/core/load-fragment.c new/src/core/load-fragment.c
+--- old/src/core/load-fragment.c	2016-11-04 01:16:42.000000000 +0800
++++ new/src/core/load-fragment.c	2019-11-25 14:49:20.190511609 +0800
+@@ -20,7 +20,6 @@
+ 
+ #include <errno.h>
+ #include <fcntl.h>
+-#include <linux/fs.h>
+ #include <linux/oom.h>
+ #ifdef HAVE_SECCOMP
+ #include <seccomp.h>
+diff -Naur old/src/shared/bus-unit-util.c new/src/shared/bus-unit-util.c
+--- old/src/shared/bus-unit-util.c	2016-11-04 01:16:42.000000000 +0800
++++ new/src/shared/bus-unit-util.c	2019-11-25 14:49:02.046940517 +0800
+@@ -37,6 +37,7 @@
+ #include "terminal-util.h"
+ #include "utf8.h"
+ #include "util.h"
++#include <sys/mount.h>
+ 
+ int bus_parse_unit_info(sd_bus_message *message, UnitInfo *u) {
+         assert(message);

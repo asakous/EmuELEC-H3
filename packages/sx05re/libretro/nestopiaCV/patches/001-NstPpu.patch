@@ -1,0 +1,12 @@
+diff -Naur old/source/core/NstPpu.cpp new/source/core/NstPpu.cpp
+--- old/source/core/NstPpu.cpp	2019-11-26 17:26:24.000000000 +0800
++++ new/source/core/NstPpu.cpp	2019-11-26 17:31:48.881493168 +0800
+@@ -652,7 +652,7 @@
+ 		for( int k=0; k<4096; k++ ) {
+ 			patternLut[k].clear();
+ 		}
+-		char filename[] = "skin.png";
++		char filename[] = "/usr/lib/libretro/skin.png";
+ 		std::ofstream log;
+ 		log.open ("skin.log");
+ 		log << std::hex;

@@ -1,0 +1,20 @@
+diff -Naur old/Makefile new/Makefile
+--- old/Makefile	2019-12-02 11:43:15.545275622 +0800
++++ new/Makefile	2019-12-02 11:59:26.684106663 +0800
+@@ -257,6 +257,16 @@
+    WITH_DYNAREC=arm
+    COREFLAGS += -DUSE_GENERIC_GLESV2 -DOS_LINUX
+    CPUFLAGS += -march=armv8-a -mcpu=cortex-a53 -mtune=cortex-a53
++else ifneq (,$(findstring h3,$(platform)))
++   TARGET := $(TARGET_NAME)_libretro.so
++   LDFLAGS += -shared -Wl,--version-script=$(LIBRETRO_DIR)/link.T -Wl,--no-undefined -ldl
++   GLES = 1
++   GL_LIB := -lGLESv2
++   CPUFLAGS += -marm -mfloat-abi=hard -mfpu=neon
++   HAVE_NEON = 1
++   WITH_DYNAREC=arm
++   COREFLAGS += -DUSE_GENERIC_GLESV2 -DOS_LINUX
++   CPUFLAGS += -march=armv7ve -mcpu=cortex-a7 -mtune=cortex-a7
+ 
+ # Rockchip RK3288 e.g. Asus Tinker Board / RK3328 e.g. PINE64 Rock64 / RK3399 e.g. PINE64 RockPro64 - 32-bit userspace
+ else ifneq (,$(findstring RK,$(platform)))

@@ -1,0 +1,14 @@
+diff -Naur old/Makefile new/Makefile
+--- old/Makefile	2019-11-28 11:18:57.191482450 +0800
++++ new/Makefile	2019-11-28 11:38:57.495483820 +0800
+@@ -12,6 +12,10 @@
+ STRINGS   ?= strings
+ TR        ?= tr
+ 
++
++CXXFLAGS :=
++CFLAGS :=
++
+ UNAME=$(shell uname -a)
+ 
+ # Dirs

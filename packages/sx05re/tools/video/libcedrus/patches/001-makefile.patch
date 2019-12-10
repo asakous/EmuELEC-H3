@@ -1,0 +1,12 @@
+diff -Naur old/Makefile new/Makefile
+--- old/Makefile	2019-12-04 17:32:58.000000000 +0800
++++ new/Makefile	2019-12-05 11:24:23.225450032 +0800
+@@ -6,7 +6,7 @@
+ LIBS = -lpthread
+ CC ?= gcc
+ 
+-prefix ?= /usr/local
++prefix ?= /usr
+ libdir ?= $(prefix)/lib
+ includedir ?= $(prefix)/include
+ 

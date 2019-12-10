@@ -1,0 +1,18 @@
+diff -Nur a/src/basic/missing.h b/src/basic/missing.h
+--- a/src/basic/missing.h	2016-05-22 00:31:29.000000000 +0200
++++ b/src/basic/missing.h	2016-07-31 23:16:36.089260342 +0200
+@@ -453,6 +453,14 @@
+ #define MQUEUE_MAGIC 0x19800202
+ #endif
+ 
++#ifndef EFIVARFS_MAGIC
++#define EFIVARFS_MAGIC 0xde5e81e4
++#endif
++
++#ifndef SMACK_MAGIC
++#define SMACK_MAGIC 0x43415d53
++#endif
++
+ #ifndef MS_MOVE
+ #define MS_MOVE 8192
+ #endif
