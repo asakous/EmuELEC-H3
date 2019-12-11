@@ -2,20 +2,13 @@
 # Copyright (C) 2018-present 5schatten (https://github.com/5schatten)
 
 PKG_NAME="SDL2-git"
-PKG_VERSION="2.0.9" # 2.0.9 Do not update!
-PKG_SHA256="255186dc676ecd0c1dbf10ec8a2cc5d6869b5079d8a38194c2aecdff54b324b1"
+PKG_VERSION="b5e5778aabc8b69b6269255f5642881e62a6897b" # 2.0.9 Do not update!
+PKG_SHA256="57a090ffac6d16e7d1631e9eef62c6918727eb1b5ac1993bdc8244d943893e23"
 PKG_LICENSE="GPL"
-PKG_SITE="https://www.libsdl.org/"
-PKG_URL="https://www.libsdl.org/release/SDL2-$PKG_VERSION.tar.gz"
+PKG_SITE="https://github.com/RetroPie/SDL-mirror"
+PKG_URL="$PKG_SITE/archive/$PKG_VERSION.tar.gz"
 PKG_DEPENDS_TARGET="toolchain alsa-lib systemd dbus $OPENGLES pulseaudio"
 PKG_LONGDESC="Simple DirectMedia Layer is a cross-platform development library designed to provide low level access to audio, keyboard, mouse, joystick, and graphics hardware."
-
-post_unpack() {
-  rm -rf /home/asako/EmuELEC/build.EmuELEC-H3.arm-3.1/SDL2-git*
-  git clone --branch mali-2.0.9 https://github.com/RetroPie/SDL-mirror $PKG_BUILD/SDL-mirror
-  mv /home/asako/EmuELEC/build.EmuELEC-H3.arm-3.1/SDL2-git-2.0.9/SDL-mirror/* /home/asako/EmuELEC/build.EmuELEC-H3.arm-3.1/SDL2-git-2.0.9/ 
-}
-
 
 pre_configure_target(){
   PKG_CMAKE_OPTS_TARGET="-DSDL_STATIC=OFF \
