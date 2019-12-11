@@ -49,6 +49,8 @@ if [ "$UBOOT_VERSION" = "sunxi" -o "$UBOOT_VERSION" = "sun8i" ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET Python2:host"
 fi
 
+ROOT=""
+
 pre_configure_target() {
   if [ -z "$UBOOT_CONFIG" ]; then
     echo "$TARGET_PLATFORM does not define any u-boot configuration, aborting."
