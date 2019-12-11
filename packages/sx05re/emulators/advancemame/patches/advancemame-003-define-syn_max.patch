@@ -1,0 +1,14 @@
+--- a/advance/linux/event.h
++++ b/advance/linux/event.h
+@@ -31,6 +31,11 @@
+ #ifndef __EVENT_H
+ #define __EVENT_H
+ 
++#ifndef SYN_MAX
++#define SYN_MAX			0xf
++#define SYN_CNT			(SYN_MAX+1)
++#endif
++
+ #include "extra.h"
+ 
+ int event_open(const char* file, unsigned char* evtype_bitmask, unsigned evtype_size);
