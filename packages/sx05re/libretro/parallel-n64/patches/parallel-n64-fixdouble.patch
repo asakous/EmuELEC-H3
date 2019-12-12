@@ -5,6 +5,6 @@
 
  #ifdef HAVE_OPENGLES2
 -typedef GLfloat GLdouble;
-+/*already defined typedef GLfloat GLdouble;*/
++typedef GLfloat GLdouble;
  typedef GLclampf GLclampd;
  #endif
