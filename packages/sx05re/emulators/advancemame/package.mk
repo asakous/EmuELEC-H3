@@ -28,14 +28,14 @@ VERSION="EmuELEC-v$(cat $ROOT/packages/sx05re/emuelec/config/EE_VERSION)-${PKG_V
 echo $VERSION > $PKG_BUILD/.version
 cd $PKG_DIR/joverride/
 ./convert.sh $(get_build_dir retroarch-joypad-autoconfig)/udev
-#cp -f $PKG_DIR/joverride/joverride.dat $PKG_BUILD/advance/linux/joverride.dat
-#rm $PKG_DIR/joverride/joverride.dat
+cp -f $PKG_DIR/joverride/joverride.dat $PKG_BUILD/advance/linux/joverride.dat
+rm $PKG_DIR/joverride/joverride.dat
 }
 
 make_target() {
 cd $PKG_BUILD
 ./autogen.sh
-./configure --prefix=/usr --datadir=/usr/share/ --datarootdir=/usr/share/ --host=armv7ve-libreelec-linux-gnueabi --enable-fb --enable-freetype --with-freetype-prefix=$SYSROOT_PREFIX/usr/ --enable-slang
+./configure --prefix=/usr --datadir=/usr/share/ --datarootdir=/usr/share/ --host=${TARGET_NAME} --enable-fb --enable-freetype --with-freetype-prefix=$SYSROOT_PREFIX/usr/ --enable-slang
 make mame
 }
 
