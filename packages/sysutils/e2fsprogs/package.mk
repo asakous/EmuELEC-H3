@@ -3,8 +3,7 @@
 # Copyright (C) 2018-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="e2fsprogs"
-PKG_VERSION="1.45.2"
-PKG_SHA256="4952c9ae91e36d762e13cc5b9e8f7eeb5453e4aee4cd9b7402e73f2d4e65e009"
+PKG_VERSION="1.43.8"
 PKG_LICENSE="GPL"
 PKG_SITE="http://e2fsprogs.sourceforge.net/"
 PKG_URL="https://www.kernel.org/pub/linux/kernel/people/tytso/$PKG_NAME/v$PKG_VERSION/$PKG_NAME-$PKG_VERSION.tar.xz"
@@ -110,3 +109,4 @@ makeinstall_host() {
   mkdir -p $TOOLCHAIN/etc
   cp misc/mke2fs.conf $TOOLCHAIN/etc
 }
+
