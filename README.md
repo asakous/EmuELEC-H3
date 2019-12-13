@@ -6,6 +6,20 @@ Because Libreelec use host tools to make image, so if you are using linux distro
 use command below to compile the program.<br>
 PROJECT=H3 ARCH=arm DISTRO=EmuELEC make -j4 image
 
+#Traditional Chinese
+編譯完的 IMAGE 的只能用在 Allwinner H3 相關的版子上，不能用在其它的版子上。
+程式也不保証能用在 KODI 的 ADDON 上。
+
+如果你用的是 orange pi PC ，IMAGE 檔直接用 WIN32IMAGE 燒即可，其它 H3 相關的版子可試著把script.bin 換掉，也許這樣就可以用。
+相關的 scripts.bin 在 bootloader 的壓縮檔裡。把 xxx.fex 更名成script.bin 然後取代SD卡上的script.bin
+
+如果你自已想編譯你自已的版本請注意。你必需拿掉 /etc/mke2fs.conf 檔裡的 64bit 跟 metadata_csum。不然產生的IMAGE 不會開機。
+這主要的原因是因為這版本的linux kernel 用的是舊ext4 ，但在產生IMAGE時用卻用本機上新的ext4程式，所以開機時舊的ext4 mount 不起來新ext4 的image，然後當掉。雖然我已經上了一版新的修正程式，但我不保証在其它的LINUX版本上也能正確編譯。
+
+編譯時請在用底下的指令
+PROJECT=H3 ARCH=arm DISTRO=EmuELEC make -j4 image
+
+我的開發環境用的是 18.04.1-Ubuntu x64 。用 windows 10 的 hyper-v 建的。
 
 # EmuELEC  
 Retro emulation for Amlogic devices.  
