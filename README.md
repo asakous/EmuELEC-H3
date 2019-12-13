@@ -7,10 +7,10 @@ use command below to compile the program.<br>
 PROJECT=H3 ARCH=arm DISTRO=EmuELEC make -j4 image
 
 #Traditional Chinese<br>
-編譯完的 IMAGE 的只能用在 Allwinner H3 相關的版子上，不能用在其它的版子上。<br>
-程式也不保証能用在 KODI 的 ADDON 上。<br>
+編譯完的 image 的只能用在 Allwinner H3 相關的版子上，不能用在其它的版子上。<br>
+程式也不保証能用在 KODI 的 addon 上。<br>
 
-如果你用的是 orange pi PC ，IMAGE 檔直接用 WIN32IMAGE 燒即可，其它 H3 相關的版子可試著把script.bin 換掉，也許這樣就可以用。<br>
+如果你用的是 Orange Pi PC ，image 檔直接用 win32image 燒即可，其它 H3 相關的版子可試著把script.bin 換掉，也許這樣就可以用。<br>
 相關的 scripts.bin 在 bootloader 的壓縮檔裡。把 xxx.fex 更名成script.bin 然後取代SD卡上的script.bin<br>
 
 如果你自已想編譯你自已的版本請注意。你必需拿掉 /etc/mke2fs.conf 檔裡的 64bit 跟 metadata_csum。不然產生的IMAGE 不會開機。<br>
