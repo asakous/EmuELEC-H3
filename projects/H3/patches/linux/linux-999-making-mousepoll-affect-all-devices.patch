@@ -1,0 +1,13 @@
+diff -Naur old/drivers/hid/usbhid/hid-core.c new/drivers/hid/usbhid/hid-core.c
+--- old/drivers/hid/usbhid/hid-core.c	2019-12-17 11:39:12.964278399 +0800
++++ new/drivers/hid/usbhid/hid-core.c	2019-12-17 11:42:24.595744696 +0800
+@@ -1123,7 +1123,8 @@
+ 		}
+ 
+ 		/* Change the polling interval of mice. */
+-		if (hid->collection->usage == HID_GD_MOUSE && hid_mousepoll_interval > 0)
++		if (/*hid->collection->usage == HID_GD_MOUSE &&*/ hid_mousepoll_interval > 0)
++			printk(KERN_INFO "%s: Changed interval to mousepoll: %d -> %d\n",hid->name, interval, hid_mousepoll_interval);
+ 			interval = hid_mousepoll_interval;
+ 
+ 		ret = -ENOMEM;
