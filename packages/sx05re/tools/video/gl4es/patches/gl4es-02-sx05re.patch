@@ -1,0 +1,19 @@
+diff -Naur old/CMakeLists.txt new/CMakeLists.txt
+--- old/CMakeLists.txt	2019-12-18 11:26:15.463472637 +0800
++++ new/CMakeLists.txt	2019-12-18 11:33:09.264192313 +0800
+@@ -60,6 +60,15 @@
+     add_definitions(-marm -mcpu=cortex-a53 -mfpu=neon -mfloat-abi=hard  -ffast-math -fomit-frame-pointer)  
+ endif()
+ 
++# H3
++if(H3)
++    add_definitions(-DODROID)
++    set(NOX11 ON)
++    set(NOEGL ON)
++    add_definitions(-marm -mcpu=cortex-a7 -mfpu=neon -mfloat-abi=hard  -ffast-math -fomit-frame-pointer)
++endif()
++
++
+ #PocketCHIP
+ if(CHIP)
+     add_definitions(-DCHIP)
