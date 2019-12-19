@@ -109,6 +109,7 @@ makeinstall_target() {
   sed -i -e "s/# video_filter_dir =/video_filter_dir =\/usr\/share\/video_filters/" $INSTALL/etc/retroarch.cfg
   sed -i -e "s/# video_gpu_screenshot = true/video_gpu_screenshot = false/" $INSTALL/etc/retroarch.cfg
   sed -i -e "s/# video_fullscreen = false/video_fullscreen = true/" $INSTALL/etc/retroarch.cfg
+  sed -i -e "s/# video_max_swapchain_images = 3/video_max_swapchain_images = 2/" $INSTALL/etc/retroarch.cfg
 
   # Audio
   sed -i -e "s/# audio_driver =/audio_driver = \"alsathread\"/" $INSTALL/etc/retroarch.cfg
