@@ -1,0 +1,88 @@
+diff -Naur old/es-core/src/resources/Font.cpp new/es-core/src/resources/Font.cpp
+--- old/es-core/src/resources/Font.cpp	2019-12-13 10:16:09.000000000 +0800
++++ new/es-core/src/resources/Font.cpp	2019-12-20 10:14:05.566669505 +0800
+@@ -551,6 +551,75 @@
+ 
+ //the worst algorithm ever written
+ //breaks up a normal string with newlines to make it fit xLen
++
++//http://eagle0wl.hatenadiary.jp/entry/2017/10/24/003606
++//supported UTF-8 text (wordwrap and cheap hyphenation)
++std::string Font::wrapText(std::string text, float xLen)
++{
++	std::string out;
++	std::string line, word;
++
++	size_t pos = 0, pos2 = 0;
++	while (0 < text.length()) {
++		size_t n = pos;
++		for (; n < (int)text.length(); n++) {
++			if (pos == 0 && xLen < sizeText(text.substr(pos, n)).x()) {
++				n--;
++				break;
++			}
++			char c = text[n];
++			if ('0' <= c && c <= '9') continue;
++			if ('A' <= c && c <= 'Z') continue;
++			if ('a' <= c && c <= 'z') continue;
++			if ('-' == c) continue;
++			if ('_' == c) continue;
++			if ('\'' == c) continue;
++			if (',' == c) continue;
++			if ('.' == c) continue;
++			break;
++		}
++		
++		size_t p;
++		if (pos < n) {
++			p = n;
++		} else {
++			p = Font::getNextCursor(text, pos);
++			if (p == pos) {
++				break;
++			}
++		}
++
++		if (text[pos] == '\n') {
++			out += text.substr(0, pos + 1);
++			text.erase(0, p);
++			pos2 = pos = p = 0;
++			continue;
++		}
++		
++		if (xLen < sizeText(text.substr(0, p)).x()) {
++			size_t cut;
++			if (0 < pos) {
++				cut = pos;
++			} else {
++				cut = p;
++			}
++
++			out += text.substr(0, cut) + "\n";
++			text.erase(0, cut);
++			pos2 = pos = p = 0;
++			n = 0;
++			continue;
++		} else {
++			pos2 = pos;
++			pos = p;
++		}
++	}
++
++	out += text;
++
++	return out;
++}
++/*
+ std::string Font::wrapText(std::string text, float xLen)
+ {
+ 	std::string out;
+@@ -590,7 +659,7 @@
+ 
+ 	return out;
+ }
+-
++*/
+ Vector2f Font::sizeWrappedText(std::string text, float xLen, float lineSpacing)
+ {
+ 	text = wrapText(text, xLen);
