@@ -29,4 +29,4 @@
 # echo "connect $BTMAC" | bluetoothctl
 # )&
 
-#echo "performance" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+echo "performance" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
