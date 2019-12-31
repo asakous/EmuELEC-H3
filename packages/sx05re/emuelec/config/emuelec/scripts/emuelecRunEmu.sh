@@ -268,7 +268,7 @@ fi
 #{log_addon}#
 
 # Return to default mode
-${TBASH} /emuelec/scripts/setres.sh
+# ${TBASH} /emuelec/scripts/setres.sh
 
 # reset audio to pulseaudio
 set_audio pulseaudio
