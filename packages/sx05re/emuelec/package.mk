@@ -17,9 +17,9 @@ PKG_AUTORECONF="no"
 PKG_TOOLCHAIN="make"
 
 # Thanks to magicseb  Reicast SA now WORKS :D
-PKG_EXPERIMENTAL="nestopiaCV quasi88 xmil np2kai cannonball"
-PKG_EMUS="$LIBRETRO_CORES PPSSPPSDL reicastsa reicastsa_old advancemame amiberry hatarisa openbor dosbox-sdl2 mupen64plus-nx mba.mini.plus scummvmsa residualvm commander-genius sdlpal"
-PKG_TOOLS="common-shaders scraper Skyscraper MC libretro-bash-launcher SDL_GameControllerDB linux-utils xmlstarlet CoreELEC-Debug-Scripts sixaxis jslisten evdev_tools mpv steam-controller dash"
+PKG_EXPERIMENTAL="nestopiaCV quasi88 xmil np2kai cannonball fba4arm"
+PKG_EMUS="$LIBRETRO_CORES PPSSPPSDL reicastsa reicastsa_old advancemame amiberry hatarisa openbor dosbox-sdl2 mupen64plus-nx mba.mini.plus scummvmsa residualvm commander-genius sdlpal mame2000 VVVVVV"
+PKG_TOOLS="common-shaders scraper Skyscraper MC libretro-bash-launcher SDL_GameControllerDB linux-utils xmlstarlet CoreELEC-Debug-Scripts sixaxis jslisten evdev_tools mpv steam-controller dash adljack"
 PKG_RETROPIE_DEP="bash pyudev dialog six git dbus-python pygobject coreutils fbterm"
 PKG_DEPENDS_TARGET+=" $PKG_EMUS $PKG_TOOLS $PKG_RETROPIE_DEP $PKG_EXPERIMENTAL"
 
