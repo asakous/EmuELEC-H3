@@ -1,0 +1,11 @@
+diff -Naur old/es-core/src/resources/Font.cpp new/es-core/src/resources/Font.cpp
+--- old/es-core/src/resources/Font.cpp	2019-12-20 11:13:47.881191995 +0800
++++ new/es-core/src/resources/Font.cpp	2020-01-30 15:48:46.494976851 +0800
+@@ -275,6 +275,7 @@
+ 
+ 	// batocera
+ 	const char* paths[] = {
++		"/usr/share/fonts/font.ttf",// full utf8 font set (traditional chinese) 
+ 		":/DroidSansFallbackFull.ttf",// japanese, chinese, present on Debian
+ 		":/fontawesome_webfont.ttf",
+ 		":/fontawesome-webfont.ttf",
