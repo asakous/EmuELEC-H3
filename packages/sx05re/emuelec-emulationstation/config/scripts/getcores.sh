@@ -95,13 +95,13 @@ case "$1" in
 	CORES="mednafen_supergrafx_libretro,mednafen_pce_fast_libretro"
 	;;
 "fbn"|"neogeo")
-	CORES="fbneo_libretro,mame2003_plus_libretro,fbalpha2012_libretro"
+	CORES="fbneo_libretro,mame2003_plus_libretro,fbalpha2012_libretro,fba4arm_libretro"
 	;;
 "arcade"|"capcom"|"cps1"|"cps2"|"cps3")
-	CORES="mame2003_plus_libretro,AdvanceMame,mame2010_libretro,fbneo_libretro,mba_mini_libretro"
+	CORES="mame2003_plus_libretro,AdvanceMame,mame2010_libretro,fbneo_libretro,mba_mini_libretro,fba4arm_libretro"
 	;;
 "mame")
-	CORES="AdvanceMame,mame2003_plus_libretro,mame2010_libretro,fbneo_libretro,mba_mini_libretro"
+	CORES="AdvanceMame,mame2003_plus_libretro,mame2010_libretro,fbneo_libretro,mba_mini_libretro,mame2003_libretro"
 	;;
 "psp"|"pspminis")
 	CORES="PPSSPPSA,ppsspp_libretro"
@@ -110,7 +110,7 @@ case "$1" in
 	CORES="mupen64plus_next_libretro,mupen64plus_libretro,parallel_n64_libretro"
 	;;
 "nes"|"nesh"|"famicom"|"fds")
-	CORES="nestopia_libretro,fceumm_libretro"
+	CORES="nestopia_libretro,fceumm_libretro,nestopiaCV_libretro"
 	;;
 "snes"|"sfc"|"snesh")
 	CORES="snes9x_libretro,snes9x2002_libretro,snes9x2005_plus_libretro"
@@ -122,7 +122,7 @@ case "$1" in
 	CORES="genesis_plus_gx_libretro,picodrive_libretro"
 	;;
 "mastersystem"|"gamegear"|"ggh"|"sg-1000")
-	CORES="gearsystem_libretro,genesis_plus_gx_libretro,picodrive_libretro"
+	CORES="gearsystem_libretro,genesis_plus_gx_libretro,picodrive_libretro,smsplus_libretro"
 	;;
 "gba"|"gbah")
 	CORES="mgba_libretro,gpsp_libretro,vbam_libretro,vba_next_libretro"
