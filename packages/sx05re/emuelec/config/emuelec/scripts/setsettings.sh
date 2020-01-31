@@ -15,6 +15,7 @@ NORUNAHEAD=(psp sega32x n64 dreamcast atomiswave naomi neogeocd saturn)
 
 INDEXRATIOS=(4/3 16/9 16/10 16/15 21/9 1/1 2/1 3/2 3/4 4/1 9/16 5/4 6/5 7/9 8/3 8/7 19/12 19/14 30/17 32/9 config squarepixel core custom)
 CONF="/storage/.config/emuelec/configs/emuelec.conf"
+EMUCONF="/storage/.config/emuelec/configs/emuoptions.conf"
 RACONF="/storage/.config/retroarch/retroarch.cfg"
 RACORECONF="/storage/.config/retroarch/retroarch-core-options.cfg"
 PLATFORM=${1,,}
@@ -207,11 +208,11 @@ esac
 function get_setting() {
 #We look for the setting on the ROM first, if not found we search for platform and lastly we search globally
 	PAT="s|^${PLATFORM}\[\"${ROM}\"\].*${1}=\(.*\)|\1|p"
-	EES=$(sed -n "${PAT}" "${CONF}")
+	EES=$(sed -n "${PAT}" "${EMUCONF}")
 
 if [ -z "${EES}" ]; then
 	PAT="s|^${PLATFORM}\..*${1}=\(.*\)|\1|p"
-	EES=$(sed -n "${PAT}" "${CONF}")
+	EES=$(sed -n "${PAT}" "${EMUCONF}")
 fi
 
 if [ -z "${EES}" ]; then
@@ -219,7 +220,8 @@ if [ -z "${EES}" ]; then
 	EES=$(sed -n "${PAT}" "${CONF}")
 fi
 
-#echo $PAT $PLATFORM $ROM ${EES}
+# Sanity check in case there there are 2 variables set, only use the first line
+EES=$(echo $EES | head -1)
 
 [ -z "${EES}" ] && EES="false"
 set_setting ${1} ${EES}
@@ -295,3 +297,7 @@ get_setting "retroarch.menu_driver"
 [ "${EES}" == "false" ] || [ "${EES}" == "none" ] || [ "${EES}" == "0" ] && EES="ozone"
 sed -i "/menu_driver =/d" ${RACONF}
 echo "menu_driver = ${EES}" >> ${RACONF}
+
+# Show bezel if enabled
+get_setting "bezel"
+[ "${EES}" == "false" ] || [ "${EES}" == "none" ] || [ "${EES}" == "0" ] && ${TBASH} /emuelec/scripts/bezels.sh "default" || ${TBASH} /emuelec/scripts/bezels.sh "$PLATFORM" "${ROM}"

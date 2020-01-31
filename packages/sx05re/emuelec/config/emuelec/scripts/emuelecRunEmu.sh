@@ -12,7 +12,7 @@ arguments="$@"
 
 #set audio device out according to emuelec.conf
 AUDIO_DEVICE="hw:$(get_ee_setting ee_audio_device)"
-[ $AUDIO_DEVICE = "hw:" ] &&  AUDIO_DEVICE="hw:1,0"
+[ $AUDIO_DEVICE = "hw:" ] &&  AUDIO_DEVICE="hw:0,0"
 sed -i "s|pcm \"hw:.*|pcm \"${AUDIO_DEVICE}\"|" /storage/.config/asound.conf
 
 # set audio to alsa
@@ -39,7 +39,6 @@ if [[ ! -d "$LOGSDIR" ]]; then
 mkdir -p "$LOGSDIR"
 fi
 
-
 # Extract the platform name from the arguments
 PLATFORM="${arguments##*-P}"  # read from -P onwards
 PLATFORM="${PLATFORM%% *}"  # until a space is found
@@ -47,10 +46,10 @@ ROMNAME="$1"
 BASEROMNAME=${ROMNAME##*/}
 
 # We check is emuelec.conf has an emulator for this game on this platform
-EMU=$(get_ee_setting ${PLATFORM}[\""${BASEROMNAME}\""].emulator)
+EMU=$(/emuelec/scripts/setemu.sh get ${PLATFORM}[\""${BASEROMNAME}\""].emulator)
 
 # If not, we check to see if the platform has an emulator set, else, get default
-[[ -z $EMU ]] && EMU=$(get_ee_setting ${PLATFORM}.emulator)
+[[ -z $EMU ]] && EMU=$(/emuelec/scripts/setemu.sh get ${PLATFORM}.emulator)
 [[ -z $EMU ]] && EMU=$(/storage/.emulationstation/scripts/getcores.sh ${PLATFORM} default)
 
 [[ $EMU = *_libretro* ]] && LIBRETRO="yes"
@@ -69,12 +68,10 @@ LOGEMU="Yes"
 VERBOSE="-v"
 fi
 
-# very WIP {
-BEZ=$(get_ee_setting ee_bezels.enabled)
-[ "$BEZ" == "1" ] && ${TBASH} /emuelec/scripts/bezels.sh "$PLATFORM" "${ROMNAME}" || ${TBASH} /emuelec/scripts/bezels.sh "default"
+# Show splash screen if enabled
 SPL=$(get_ee_setting ee_splash.enabled)
-[ "$SPL" == "1" ] && ${TBASH} /emuelec/scripts/show_splash.sh "$PLATFORM" "${ROMNAME}" || ${TBASH} /emuelec/scripts/show_splash.sh "default" 
-# } very WIP 
+[ "$SPL" -eq "1" ] && ${TBASH} /emuelec/scripts/show_splash.sh "$PLATFORM" "${ROMNAME}"
+
 
 if [ -z ${LIBRETRO} ]; then
 
@@ -135,7 +132,6 @@ case ${PLATFORM} in
 		;;
 	"amiga"|"amigacd32")
 		if [ "$EMU" = "AMIBERRY" ]; then
-		set_kill_keys "amiberry"
 		RUNTHIS='${TBASH} /usr/bin/amiberry.start "${ROMNAME}"'
 		fi
 		;;
@@ -173,7 +169,7 @@ case ${PLATFORM} in
 		if [ "$EMU" = "PPSSPPSA" ]; then
 		#PPSSPP can run at 32BPP but only with buffered rendering, some games need non-buffered and the only way they work is if I set it to 16BPP
 		# /emuelec/scripts/setres.sh 16 # This was only needed for S912, but PPSSPP does not work on S912 
-		set_kill_keys "ppsspp"
+		set_kill_keys "PPSSPPSDL"
 		RUNTHIS='${TBASH} /usr/bin/ppsspp.sh "${ROMNAME}"'
 		fi
 		;;
@@ -268,10 +264,10 @@ fi
 #{log_addon}#
 
 # Return to default mode
-# ${TBASH} /emuelec/scripts/setres.sh
+${TBASH} /emuelec/scripts/setres.sh
 
 # reset audio to pulseaudio
 set_audio pulseaudio
 
-# remove emu.cfg is platform was reicast
+# remove emu.cfg if platform was reicast
 [ -f /storage/.config/reicast/emu.cfg ] && rm /storage/.config/reicast/emu.cfg
