@@ -95,13 +95,13 @@ case "$1" in
 	CORES="mednafen_supergrafx_libretro,mednafen_pce_fast_libretro"
 	;;
 "fbn"|"neogeo")
-	CORES="fbneo_libretro,mame2003_plus_libretro,fbalpha2012_libretro,fba4arm_libretro"
+	CORES="fbneo_libretro,mame2003_plus_libretro,fbalpha2012_libretro,fba4arm_libretro,mba_mini_libretro"
 	;;
 "arcade"|"capcom"|"cps1"|"cps2"|"cps3")
-	CORES="mame2003_plus_libretro,AdvanceMame,mame2010_libretro,fbneo_libretro,mba_mini_libretro,fba4arm_libretro"
+	CORES="mame2003_plus_libretro,AdvanceMame,mame2010_libretro,fbneo_libretro,mba_mini_libretro,mame2003_libretro"
 	;;
 "mame")
-	CORES="AdvanceMame,mame2003_plus_libretro,mame2010_libretro,fbneo_libretro,mba_mini_libretro,mame2003_libretro"
+	CORES="AdvanceMame,mame2003_plus_libretro,mame2010_libretro,fbneo_libretro,mba_mini_libretro,mame2003_libretro,mame2000_libretro"
 	;;
 "psp"|"pspminis")
 	CORES="PPSSPPSA,ppsspp_libretro"
