@@ -1,3 +1,5 @@
+unmaintained
+please goto https://github.com/asakous/Neo-EmuELEC-H3 instead
 #H3<br>
 This repository is only for Allwinner H3 devices. Don't use it on other devices and don't build as KODI addon because it probably won't work.
 
